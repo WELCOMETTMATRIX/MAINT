@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blazzy Tap Game - Under Maintenance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .countdown {
+            font-size: 2em;
+            font-weight: bold;
+            color: #f1c40f;
+        }
+        .message {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        .footer {
+            font-size: 0.8em;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Blazzy Tap Game</h1>
+    <p>We are currently performing maintenance on the game.</p>
+    <p class="countdown">The game will be available again in:</p>
+    <p class="countdown" id="timer">14:00:00</p>
+    <div class="message">
+        <p>Thank you for your patience! Please check back soon!</p>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Blazzy Tap Game. All Rights Reserved.</p>
+    </div>
+
+    <script>
+        // Countdown timer functionality
+        var countdownTime = 14 * 60 * 60; // 14 hours in seconds
+        var timerElement = document.getElementById('timer');
+
+        function updateTimer() {
+            var hours = Math.floor(countdownTime / 3600);
+            var minutes = Math.floor((countdownTime % 3600) / 60);
+            var seconds = countdownTime % 60;
+
+            timerElement.innerHTML = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
+
+            if (countdownTime <= 0) {
+                clearInterval(timerInterval);
+                timerElement.innerHTML = "The game is now available!";
+            } else {
+                countdownTime--;
+            }
+        }
+
+        function padZero(num) {
+            return num < 10 ? '0' + num : num;
+        }
+
+        var timerInterval = setInterval(updateTimer, 1000);
+    </script>
+
+</body>
+</html>
